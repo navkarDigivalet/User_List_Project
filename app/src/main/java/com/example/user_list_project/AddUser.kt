@@ -28,13 +28,11 @@ class AddUser : AppCompatActivity() {
 
         val spinner: Spinner = findViewById(R.id.Spinner1)
 
-        if (spinner != null) {
-            val adapter = ArrayAdapter(
-                this,
-                android.R.layout.simple_spinner_item, categories
-            )
-            spinner.adapter = adapter
-        }
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item, categories
+        )
+        spinner.adapter = adapter
 
         // val mydb1 : MyDatabase1 = MyDatabase1(this)          //creating the database
 
