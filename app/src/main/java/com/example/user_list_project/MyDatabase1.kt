@@ -86,7 +86,7 @@ class MyDatabase1(
         return courseModelArrayList
     }
 
-    fun readCategory(category: String): ArrayList<ProductModel>
+    /*fun readCategory(category: String): ArrayList<ProductModel>
     {
         val db : SQLiteDatabase = this.readableDatabase
 
@@ -104,5 +104,5 @@ class MyDatabase1(
         }
         cursorCourses.close()
         return courseModelArrayList
-    }
+    }*/
 }

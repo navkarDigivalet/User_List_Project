@@ -2,32 +2,28 @@ package com.example.user_list_project
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Base64.encodeToString
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 import java.io.ByteArrayOutputStream
-import java.util.Base64
 
 
 class AddUser : AppCompatActivity() {
 
-    lateinit var txtName : TextView
-    lateinit var  txtPrice : TextView
-    lateinit var edtName : EditText
-    lateinit var edtPrice : EditText
+    private lateinit var txtName : TextView
+    private lateinit var  txtPrice : TextView
+    private lateinit var edtName : EditText
+    private lateinit var edtPrice : EditText
 
-    lateinit var btnGallery: Button
-    lateinit var fabGallery: FloatingActionButton
+    /*lateinit var btnGallery: Button
+    lateinit var fabGallery: FloatingActionButton*/
 
-    lateinit var  image : ByteArray
+    private lateinit var  image : ByteArray
 
-    var isImageAdded : Boolean = false
+    private var isImageAdded : Boolean = false
 
     // private const val GALLERY_REQ_CODE = 1000           // It can store any value
 
@@ -102,23 +98,23 @@ class AddUser : AppCompatActivity() {
             edtName = findViewById(R.id.edtName)
             edtPrice = findViewById(R.id.edtPrice)
 
-            var stringName : String = edtName.text.toString()
-            var stringPrice : String = edtPrice.text.toString()
-            var stringCategory : String = spinner.selectedItem.toString()
+            val stringName : String = edtName.text.toString()
+            val stringPrice : String = edtPrice.text.toString()
+            val stringCategory : String = spinner.selectedItem.toString()
 
             ///
 
-            val bitmap2 = BitmapFactory.decodeResource(resources, R.drawable.ic_baseline_add_a_photo_24)
+         //   val bitmap2 = BitmapFactory.decodeResource(resources, R.drawable.ic_baseline_add_a_photo_24)
 
 
             if(isImageAdded) {
 
                 val bitmap = (img1.drawable as BitmapDrawable).bitmap
 
-                val stream = ByteArrayOutputStream()
+                val stream : ByteArrayOutputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
                 image = stream.toByteArray()
-                val imagestr: String = android.util.Base64.encodeToString(image, 1)
+               // val imagestr: String = android.util.Base64.encodeToString(image, 1)
 
             }
             else

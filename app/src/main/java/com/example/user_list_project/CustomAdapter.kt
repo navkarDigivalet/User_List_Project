@@ -2,8 +2,6 @@ package com.example.user_list_project
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,7 +61,6 @@ class CustomAdapter(private val dataset : ArrayList<ProductModel>): RecyclerView
         val imageView : ImageView
 
         init {
-
             textName = view.findViewById(R.id.txtName2)
             textPrice = view.findViewById(R.id.txtPrice2)
             textCategory = view.findViewById(R.id.txtCategory2)

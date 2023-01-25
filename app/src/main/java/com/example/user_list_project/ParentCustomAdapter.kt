@@ -53,13 +53,13 @@ class ParentCustomAdapter(private val dataset : ArrayList<ProductModelParent>): 
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view)
     {
-        val parent_category: TextView
-        val child_recycler : RecyclerView
+        val parentCategory: TextView
+        val childRecycler : RecyclerView
 
         init {
 
-            child_recycler = view.findViewById(R.id.child_recycler)
-            parent_category = view.findViewById(R.id.parent_category)
+            childRecycler = view.findViewById(R.id.child_recycler)
+            parentCategory = view.findViewById(R.id.parent_category)
         }
     }
 
@@ -75,13 +75,13 @@ class ParentCustomAdapter(private val dataset : ArrayList<ProductModelParent>): 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.parent_category.text = dataset[position].categoryName
+        holder.parentCategory.text = dataset[position].categoryName
 
         val childAdapter :CustomAdapter = CustomAdapter(dataset[position].arraylist)
 
-        holder.child_recycler.layoutManager = LinearLayoutManager(holder.child_recycler.context,LinearLayoutManager.HORIZONTAL,false)
+        holder.childRecycler.layoutManager = LinearLayoutManager(holder.childRecycler.context,LinearLayoutManager.HORIZONTAL,false)
 
-        holder.child_recycler.adapter = childAdapter
+        holder.childRecycler.adapter = childAdapter
 
         /*childAdapter.notifyDataSetChanged()*/
 

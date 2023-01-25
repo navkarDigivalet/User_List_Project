@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:id="@+id/linear1"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
 
             >
 
@@ -37,6 +37,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:id="@+id/txtBack"
+
                 />
 
             <TextView
@@ -45,6 +46,7 @@
                 android:text="PRODUCTS"
                 android:textSize="17sp"
                 android:layout_weight="1"
+                android:maxLines="1"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textAlignment="center"
@@ -79,7 +81,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             >
 
             <TextView
@@ -98,9 +100,9 @@
                 android:layout_height="180dp"
                 android:layout_marginTop="2dp"
                 android:scaleType="fitXY"
-
+                android:contentDescription="Image"
                 android:src="@drawable/ic_baseline_add_a_photo_24"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtImage" />
 
            <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -130,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:text="Product Name"
                 android:id="@+id/txtName"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img1"
                 android:layout_marginTop="16dp"
 
@@ -144,9 +146,11 @@
                 android:hint="Name"
                 android:maxLines="1"
                 android:minHeight="48dp"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtName"
-                android:textColorHint="#E3DFDF"/>
+                android:textColorHint="#E3DFDF"
+                android:autofillHints="name"
+                android:inputType="text" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -169,7 +173,8 @@
                 android:minHeight="48dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtPrice"
-                android:textColorHint="#E3DFDF"/>
+                android:textColorHint="#E3DFDF"
+                android:autofillHints="price" />
 
             <TextView
                 android:layout_width="match_parent"

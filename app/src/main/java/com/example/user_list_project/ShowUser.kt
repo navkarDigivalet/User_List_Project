@@ -9,20 +9,20 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ShowUser : AppCompatActivity() {
 
-    lateinit var  arrayProduct : ArrayList<ProductModel>
-    lateinit var dbHandler : MyDatabase1
-    lateinit var recyclerView: RecyclerView
-    lateinit var customAdapter: CustomAdapter
+    private lateinit var  arrayProduct : ArrayList<ProductModel>
+    private lateinit var dbHandler : MyDatabase1
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var customAdapter: CustomAdapter
 
     ////
-    lateinit var arrayParentProduct : ArrayList<ProductModelParent>
-    lateinit var parentCustomAdapter: ParentCustomAdapter
+    private lateinit var arrayParentProduct : ArrayList<ProductModelParent>
+    private lateinit var parentCustomAdapter: ParentCustomAdapter
 
-    lateinit var arrayListCategory1 : ArrayList<ProductModel>
+    /*lateinit var arrayListCategory1 : ArrayList<ProductModel>
     lateinit var arrayListCategory2 : ArrayList<ProductModel>
     lateinit var arrayListCategory3 : ArrayList<ProductModel>
     lateinit var arrayListCategory4 : ArrayList<ProductModel>
-    lateinit var arrayListCategory5 : ArrayList<ProductModel>
+    lateinit var arrayListCategory5 : ArrayList<ProductModel>*/
     ///
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,57 +79,78 @@ class ShowUser : AppCompatActivity() {
 
         /////
 
-        var arrCategory1  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
-        var arrCategory2  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
-        var arrCategory3  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
-        var arrCategory4  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
-        var arrCategory5  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+        val arrCategory1  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+        val arrCategory2  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+        val arrCategory3  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+        val arrCategory4  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+        val arrCategory5  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
 
-        for(i in 0 until arrayProduct.size)
-        {
-           //arrCategory[i] = arrayUser[i].category
-           try {
+//        for(i in 0 until arrayProduct.size)
+//        {
+//           //arrCategory[i] = arrayUser[i].category
+//           try {
+//
+//               when (arrayProduct[i].category) {
+//                   "Category 1" -> {
+//                       arrCategory1.add(arrayProduct[i])
+//                   }
+//                   "Category 2" -> {
+//                       arrCategory2.add(arrayProduct[i])
+//                   }
+//                   "Category 3" -> {
+//                       arrCategory3.add(arrayProduct[i])
+//                   }
+//                   "Category 4" -> {
+//                       arrCategory4.add(arrayProduct[i])
+//                   }
+//                   "Category 5" -> {
+//                       arrCategory5.add(arrayProduct[i])
+//                   }
+//               }
+//              // arrCategory.add(arrayUser[i])
+//           }
+//
+//           catch (e:Exception)
+//           {
+//               Log.d("Exception" , e.toString())
+//           }
+//        }
+        arrayProduct.forEach{
+            when (it.category) {
+                "Category 1" -> {
+                    arrCategory1.add(it)
+                }
+                "Category 2" -> {
+                    arrCategory2.add(it)
+                }
+                "Category 3" -> {
+                    arrCategory3.add(it)
+                }
+                "Category 4" -> {
+                    arrCategory4.add(it)
+                }
+                "Category 5" -> {
+                    arrCategory5.add(it)
+                }
+                else ->{
 
-               when (arrayProduct[i].category) {
-                   "Category 1" -> {
-                       arrCategory1.add(arrayProduct[i])
-                   }
-                   "Category 2" -> {
-                       arrCategory2.add(arrayProduct[i])
-                   }
-                   "Category 3" -> {
-                       arrCategory3.add(arrayProduct[i])
-                   }
-                   "Category 4" -> {
-                       arrCategory4.add(arrayProduct[i])
-                   }
-                   "Category 5" -> {
-                       arrCategory5.add(arrayProduct[i])
-                   }
-               }
-              // arrCategory.add(arrayUser[i])
-           }
-
-           catch (e:Exception)
-           {
-               Log.d("Exception" , e.toString())
-           }
+                }
+            }
         }
 
 
+//           arrayProduct.sortBy { it.category }
 
-           arrayProduct.sortBy { it.category }
-
-        for(i in arrayProduct)
+        /*for(i in arrayProduct)
         {
-            Log.d("abc" , "${i.category}")
-        }
+            Log.d("abc" , i.category)
+        }*/
 
         /*val map : Map<String , ArrayList<CourseModel>> = arrayUser.associate {
             Pair(it.category, arrayUser)
         }*/
 
-        val map : List<Pair<String, ArrayList<ProductModel>>> = arrayProduct.map { it.category to arrayProduct }
+        // val map : List<Pair<String, ArrayList<ProductModel>>> = arrayProduct.map { it.category to arrayProduct }
 
         // Log.d("Map" , "$map")
 
