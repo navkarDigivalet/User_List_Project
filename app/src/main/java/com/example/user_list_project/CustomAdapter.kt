@@ -1,8 +1,13 @@
 package com.example.user_list_project
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -48,21 +53,21 @@ class CustomAdapter(private val dataset : ArrayList<Model1>): RecyclerView.Adapt
     }
 }*/
 
-class CustomAdapter(private val dataset : ArrayList<CourseModel>): RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapter(private val dataset : ArrayList<ProductModel>): RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view)
     {
         val textName: TextView
         val textPrice : TextView
         val textCategory : TextView
-      //  val imageView : ImageView
+        val imageView : ImageView
 
         init {
 
             textName = view.findViewById(R.id.txtName2)
             textPrice = view.findViewById(R.id.txtPrice2)
             textCategory = view.findViewById(R.id.txtCategory2)
-          //  imageView = view.findViewById(R.id.img2)
+            imageView = view.findViewById(R.id.img2)
         }
     }
 
@@ -82,7 +87,10 @@ class CustomAdapter(private val dataset : ArrayList<CourseModel>): RecyclerView.
         holder.textName.text = dataset[position].name
         holder.textPrice.text = dataset[position].price
         holder.textCategory.text = dataset[position].category
-     //   holder.imageView.setImageResource(dataset[position].img)
 
+        val bitmap : Bitmap = BitmapFactory.decodeByteArray(dataset[position].image,0,dataset[position].image.size)
+
+      //  holder.imageView.setImageResource(dataset[position].image)
+        holder.imageView.setImageBitmap(bitmap)
     }
 }

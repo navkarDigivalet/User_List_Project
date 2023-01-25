@@ -9,20 +9,20 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ShowUser : AppCompatActivity() {
 
-    lateinit var  arrayUser : ArrayList<CourseModel>
+    lateinit var  arrayProduct : ArrayList<ProductModel>
     lateinit var dbHandler : MyDatabase1
     lateinit var recyclerView: RecyclerView
     lateinit var customAdapter: CustomAdapter
 
     ////
-    lateinit var arrayParentUser : ArrayList<CourseModelParent>
+    lateinit var arrayParentProduct : ArrayList<ProductModelParent>
     lateinit var parentCustomAdapter: ParentCustomAdapter
 
-    lateinit var arrayListCategory1 : ArrayList<CourseModel>
-    lateinit var arrayListCategory2 : ArrayList<CourseModel>
-    lateinit var arrayListCategory3 : ArrayList<CourseModel>
-    lateinit var arrayListCategory4 : ArrayList<CourseModel>
-    lateinit var arrayListCategory5 : ArrayList<CourseModel>
+    lateinit var arrayListCategory1 : ArrayList<ProductModel>
+    lateinit var arrayListCategory2 : ArrayList<ProductModel>
+    lateinit var arrayListCategory3 : ArrayList<ProductModel>
+    lateinit var arrayListCategory4 : ArrayList<ProductModel>
+    lateinit var arrayListCategory5 : ArrayList<ProductModel>
     ///
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,19 +33,17 @@ class ShowUser : AppCompatActivity() {
        /* val intentData = intent
         val categoryName : String = intentData.getStringExtra("category_name").toString()*/
 
-        val sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE)
-        val categoryName = sharedPreferences.getString("value", "").toString()
+      /*  val sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE)
+        val categoryName = sharedPreferences.getString("value", "").toString()*/
+
        //  Log.d("this" , "Data stored is $categoryName")
 
-
-
-
-        arrayUser = ArrayList<CourseModel>()
+        arrayProduct = ArrayList<ProductModel>()
         dbHandler = MyDatabase1(this)
 
-         arrayUser = dbHandler.readUser()
+         arrayProduct = dbHandler.readUser()
 
-        arrayListCategory1 = ArrayList()
+       /* arrayListCategory1 = ArrayList()
         arrayListCategory2 = ArrayList()
         arrayListCategory3 = ArrayList()
         arrayListCategory4 = ArrayList()
@@ -55,7 +53,7 @@ class ShowUser : AppCompatActivity() {
         arrayListCategory2 = dbHandler.readCategory("Category 2")
         arrayListCategory3 = dbHandler.readCategory("Category 3")
         arrayListCategory4 = dbHandler.readCategory("Category 4")
-        arrayListCategory5 = dbHandler.readCategory("Category 5")
+        arrayListCategory5 = dbHandler.readCategory("Category 5")*/
 
         /*arrayUser.add(CourseModel("fefef","64646"))
         arrayUser.add(CourseModel("wfwf","58585"))
@@ -67,7 +65,7 @@ class ShowUser : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        customAdapter = CustomAdapter(arrayUser)
+        customAdapter = CustomAdapter(arrayProduct)
 
       /*  arrayUser.add(Model1(R.drawable.ic_launcher_background,"Product 1" , "500000"))
         arrayUser.add(Model1(R.drawable.ic_launcher_background,"Product 2" , "500000"))
@@ -81,22 +79,78 @@ class ShowUser : AppCompatActivity() {
 
         /////
 
-        arrayParentUser = ArrayList()
-        arrayParentUser.add(CourseModelParent("Category 1" , arrayListCategory1))
-        arrayParentUser.add(CourseModelParent("Category 2" , arrayListCategory2))
-        arrayParentUser.add(CourseModelParent("Category 3" , arrayListCategory3))
-        arrayParentUser.add(CourseModelParent("Category 4" , arrayListCategory4))
-        arrayParentUser.add(CourseModelParent("Category 5" , arrayListCategory5))
+        var arrCategory1  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+        var arrCategory2  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+        var arrCategory3  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+        var arrCategory4  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+        var arrCategory5  : ArrayList<ProductModel> = ArrayList(arrayProduct.size)
+
+        for(i in 0 until arrayProduct.size)
+        {
+           //arrCategory[i] = arrayUser[i].category
+           try {
+
+               when (arrayProduct[i].category) {
+                   "Category 1" -> {
+                       arrCategory1.add(arrayProduct[i])
+                   }
+                   "Category 2" -> {
+                       arrCategory2.add(arrayProduct[i])
+                   }
+                   "Category 3" -> {
+                       arrCategory3.add(arrayProduct[i])
+                   }
+                   "Category 4" -> {
+                       arrCategory4.add(arrayProduct[i])
+                   }
+                   "Category 5" -> {
+                       arrCategory5.add(arrayProduct[i])
+                   }
+               }
+              // arrCategory.add(arrayUser[i])
+           }
+
+           catch (e:Exception)
+           {
+               Log.d("Exception" , e.toString())
+           }
+        }
 
 
-        parentCustomAdapter = ParentCustomAdapter(ArrayList(arrayParentUser))
+
+           arrayProduct.sortBy { it.category }
+
+        for(i in arrayProduct)
+        {
+            Log.d("abc" , "${i.category}")
+        }
+
+        /*val map : Map<String , ArrayList<CourseModel>> = arrayUser.associate {
+            Pair(it.category, arrayUser)
+        }*/
+
+        val map : List<Pair<String, ArrayList<ProductModel>>> = arrayProduct.map { it.category to arrayProduct }
+
+        // Log.d("Map" , "$map")
+
+       ////
+
+
+        // arrayUser[2].category
+
+
+        arrayParentProduct = ArrayList()
+        arrayParentProduct.add(ProductModelParent("Category 1" , arrCategory1))
+        arrayParentProduct.add(ProductModelParent("Category 2" , arrCategory2))
+        arrayParentProduct.add(ProductModelParent("Category 3" , arrCategory3))
+        arrayParentProduct.add(ProductModelParent("Category 4" , arrCategory4))
+        arrayParentProduct.add(ProductModelParent("Category 5" , arrCategory5))
 
 
 
-        ////
 
 
-
+        parentCustomAdapter = ParentCustomAdapter(ArrayList(arrayParentProduct))
 
         recyclerView.adapter = parentCustomAdapter
 

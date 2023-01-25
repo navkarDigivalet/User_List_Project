@@ -49,7 +49,7 @@ class CustomAdapter(private val dataset : ArrayList<Model1>): RecyclerView.Adapt
     }
 }*/
 
-class ParentCustomAdapter(private val dataset : ArrayList<CourseModelParent>): RecyclerView.Adapter<ParentCustomAdapter.ViewHolder>(){
+class ParentCustomAdapter(private val dataset : ArrayList<ProductModelParent>): RecyclerView.Adapter<ParentCustomAdapter.ViewHolder>(){
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view)
     {
@@ -83,7 +83,7 @@ class ParentCustomAdapter(private val dataset : ArrayList<CourseModelParent>): R
 
         holder.child_recycler.adapter = childAdapter
 
-        childAdapter.notifyDataSetChanged()
+        /*childAdapter.notifyDataSetChanged()*/
 
 
 
